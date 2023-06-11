@@ -100,14 +100,16 @@ func fileInsertInfo(path_dir string, filename string, instert_data []string) {
 	// 把源文件的后续内容写入临时文件
 	for {
 		line, err := reader.ReadString('\n') // 依次读一行
+		_, _ = writer.WriteString(line)
 		if err == io.EOF {
 			break
 		}
+
 		if err != nil {
 			fmt.Printf("File raed failed! err: %v\n", err)
 			return
 		}
-		_, _ = writer.WriteString(line)
+
 	}
 	_ = writer.Flush()
 
